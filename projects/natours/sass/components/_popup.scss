@@ -1,0 +1,108 @@
+.popup {
+  background-color: rgba($color-black,.8);
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 9999899;
+  //hide the popup be defualt. this is better than display:none, as that can't
+  //be animated
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+
+  backdrop-filter: blur(5px);
+
+  &__content {
+    @include absCenter;
+    background-color: $color-white;
+    // text-align: center;
+    width: 75%;
+    box-shadow: 0 2rem 4rem rgba($color-black, 0.2);
+    border-radius: 3px;
+    // set up the children as as pseudo-table
+    display: table;
+    overflow: hidden;
+    // for visibility and transform see target code below
+    visibility: hidden;
+    // already have a transform in the absCenter mixin, to have to redefine here with
+    //scale
+    transform: translate(-50%, -50%) scale(0.25);
+    transition: all 0.5s 0.3s;
+  }
+  &__left {
+    width: 33.3333%;
+    height: 100%;
+    display: table-cell;
+    @include respond(tab-land) {
+      width: 100%;
+      display: block;
+      height: 30rem;
+    }
+  }
+  &__right {
+    width: 66.6666%;
+    display: table-cell;
+    padding: 3rem 5rem;
+    vertical-align: middle;
+    @include respond(tab-land) {
+      width: 100%;
+      display: block;
+    }
+  }
+  &__img {
+    display: block;
+    width: 100%;
+    @include respond(tab-land) {
+      width: 50%;
+      display: inline-block;
+      float: left;
+      height: 100%;
+    }
+  }
+  &__text {
+    font-size: 1.4rem;
+    margin-bottom: 4rem;
+
+    //set up newspaper column format
+    column-count: 2;
+    column-gap: 4rem;
+    column-rule: 1px solid $color-grey-dark-2;
+    //set up automatic hyphens -doesn't seem to work on edge
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+  }
+  // Close button functionality and styling
+  //the target pseudo-class is selected when the url is #popup which is the
+  //target of the anchor of the BOOK NOW button on the cards
+  //open states
+  &:target {
+    opacity: 1;
+    visibility: visible;
+  }
+  // when the popup__content becomes the target
+  &:target &__content {
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  &__close {
+    &:link,
+    &:visited {
+      color: $color-grey-dark;
+      position: absolute;
+      top: 2.5rem;
+      right: 2.5rem;
+      font-size: 3rem;
+      text-decoration: none;
+      display: inline-block;
+      line-height: 1;
+    }
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}

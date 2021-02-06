@@ -1,0 +1,48 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  /* 62.5% means the root font-size is 10px.It defines what 1 rem is*/
+  font-size: 62.5%; // 1 rem= 10px;   10px/16px =62.5%
+  // background-color: blue;
+
+  // @include respondphone  -  don't need phone at 50% as its covered by tab-port
+  //   font-size: 50%;
+
+  @include respond(big-desktop) {
+    //1800px
+    font-size: 75%; //1rem=12px   12/16=75%
+    //   background-color: gold;
+  }
+  @include respond(tab-land) {
+    //1200px
+    font-size: 56.25%; //1rem=9px,   9/16=56.25%
+    //    background-color: pink;
+  }
+  @include respond(tab-port) {
+    //900px
+    font-size: 50%; //1rem=8px,   8/16=50%
+    //  background-color: rgb(128, 41, 0);
+  }
+}
+
+body {
+  box-sizing: border-box;
+  padding: 3.5rem;
+  @include respond(tab-port) {
+    //900px
+    padding: 0;
+  }
+
+
+  // when the user selects the text
+  ::selection {
+    background-color: $color-primary;
+    color: $color-white;
+  }
+}

@@ -1,0 +1,78 @@
+.homes {
+  grid-column: center-start/center-end;
+  margin: 15rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 7rem;
+  .home {
+    background-color: $color-grey-light-1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    // don't bother with rows, use impicit grid
+    grid-row-gap: 3.5rem;
+    &__img {
+      width: 100%;
+      grid-column: 1 / span 2;
+      // need to specify row here to force overlapping with __like heart
+      grid-row: 1/2;
+      z-index: 1;
+    }
+    &__like {
+      // put the heart in the same column as the image - overlap them
+      grid-row: 1/2;
+      grid-column: 2/3;
+      fill: $color-primary;
+      height: 2.5rem;
+      width: 2.5rem;
+      z-index: 2;
+      justify-self: end;
+      margin: 1rem;
+    }
+    &__name {
+      grid-column: 1 / span 2;
+      //specify first grid row to force overlapping
+      grid-row: 1/2;
+      z-index: 2;
+      justify-self: center;
+      //move button to bottom of cell
+      align-self: end;
+      font-family: $font-display;
+      font-size: 1.6rem;
+      text-align: center;
+      padding: 1.25rem;
+      background-color: $color-secondary;
+      color: white;
+      font-weight: 400;
+      width: 80%;
+      //move the item down so it overlaps two cells
+      transform: translateY(50%);
+    }
+    &__location,
+    &__rooms {
+      // move first row down so doesn't overlap with text overlap
+      margin-top: 2.5rem;
+    }
+    &__location,
+    &__rooms,
+    &__area,
+    &__price {
+      font-size: 1.5rem;
+      margin-left: 2rem;
+      // put items side by side
+      display: flex;
+      //vertically align items
+      align-items: center;
+      svg {
+        fill: $color-primary;
+        height: 2rem;
+        width: 2rem;
+        margin-right: 1rem;
+      }
+      p {
+      }
+    }
+    &__btn {
+      grid-column: 1 / span 2;
+    }
+  }
+}

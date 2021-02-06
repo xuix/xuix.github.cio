@@ -1,0 +1,86 @@
+.story {
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
+  background-color: rgba($color-white, 0.6);
+  border-radius: 3px;
+  padding: 6rem;
+  //adjust the padding for the 3 rem translate below
+  padding-left: 9rem;
+  font-size: default-font-size;
+  transform: skewX(-12deg);
+  @include respond(tab-port) {
+    padding: 4rem;
+    padding-left: 7rem;
+  }
+  @include respond(phone) {
+    transform: skewX(0);
+
+  }
+
+  // undo the skew for all of the direct children - can't select childreb directley *> as already
+  // have a transform below which takes precedence. need to add to children manually below
+
+  &__shape {
+    height: 15rem;
+    width: 15rem;
+    float: left;
+    //make the text follow the shape a circle
+    //to work the element must be floated and have height and width
+    //parameters radius, xcenter, ycenter
+    shape-outside: circle(50% at 50% 50%);
+    //make the square div into a circle
+    clip-path: circle(50% at 50% 50%);
+    // put a bit of space between the shap-outside and clip-path
+    transform: translateX(-3rem) skewX(12deg);
+    @include respond(phone) {
+      transform:  translateX(-3rem)  skewX(0);
+         }
+    position: relative;
+  }
+  &__img {
+    height: 100%;
+    //move image so photo is in center
+    transform: translateX(-4rem) scale(1.4);
+    //fix animation glitch
+    //backface-visibility: hidden;
+    transition: all 0.5s;
+    @include respond(tab-port) {
+      display: block;
+    }
+  }
+  &__caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    //translate -50,-50 puts text in middle of parent. -50,20 puts it below center
+    transform: translate(-50%, 20%);
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    text-align: center;
+    color: $color-white;
+    //hidden to start off with
+    opacity: 0;
+    transition: all 0.5s;
+    // fix animation shake glitch
+    // backface-visibility: hidden;
+  }
+  // when story is hovered change story__caption
+  &:hover &__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  // when story is hovered change story__img
+
+  &:hover &__img {
+    transform: translateX(-4rem) scale(1);
+    //blur the image and darken it on hover
+    filter: blur(3px) brightness(80%);
+  }
+  &__text {
+    transform: skewX(12deg);
+    @include respond(phone) {
+      transform: skewX(0);
+    }
+  }
+}

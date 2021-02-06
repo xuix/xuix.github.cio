@@ -1,0 +1,53 @@
+.sidebar {
+  background-color: $color-primary;
+  grid-column: sidebar-start/sidebar-end;
+  grid-row: 1/-1;
+  // for screens <1000 px move the sidebar to the first row (which was newly defined
+  // in the media query in base.scss
+  @media only screen and (max-width: $bp-large) {
+    grid-column: 1/-1;
+    grid-row: 1/2;
+    // move the hamburger to the RHS and vertically center
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  //use flexbox to center the menu
+  display: flex;
+  justify-content: center;
+
+  .nav-btn {
+    border: none;
+    border-radius: 0;
+    background-color: white;
+    height: 2px;
+    width: 4.5rem;
+    // move the button down a bit
+    margin-top: 4rem;
+
+    &::after,
+    &::before {
+      content: "";
+      display: block;
+      background-color: white;
+      height: 2px;
+      width: 4.5rem;
+    }
+    &::before {
+      transform: translateY(-1.3rem);
+    }
+    &::after {
+      transform: translateY(1.1rem);
+    }
+    @media only screen and (max-width: $bp-large) {
+      margin-top: 0rem;
+      margin-right: 3rem;
+      &::before {
+        transform: translateY(-0.9rem);
+      }
+      &::after {
+        transform: translateY(0.7rem);
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "natours",
+  "version": "1.0.0",
+  "description": "Natours project",
+  "main": "index.js",
+  "scripts": {
+    "watch:sass": "node-sass sass/main.scss css/style.css -w",
+    "devserver":"live-server",
+    "start":"npm-run-all --parallel devserver watch:sass",
+    
+    "compile:sass": "node-sass sass/main.scss css/style.comp.css",
+    "concat:css": "concat -o css/style.concat.css  css/style.comp.css css/icon-fonts.css",
+    "prefix:css": "postcss  --use autoprefixer   -o css/style.prefix.css css/style.concat.css",
+    "compress:css": "node-sass css/style.prefix.css css/style.css --output-style compressed",
+    "build:css":"npm-run-all compile:sass concat:css prefix:css compress:css"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "autoprefixer": "^10.1.0",
+    "concat": "^1.0.3",
+    "node-sass": "^5.0.0",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.2.0",
+    "postcss-cli": "^8.3.0"
+  }
+}

@@ -1,0 +1,77 @@
+.story {
+  &__pictures {
+    background-color: $color-primary;
+    grid-column: full-start/col-end 4;
+    background-image: linear-gradient(
+        rgba($color-primary, 0.2),
+        rgba($color-primary, 0.2)
+      ),
+      url("../img/back.jpg");
+    //the parent of the images is __pictures
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+    align-items: center;
+    background-size: cover;
+    @media only screen and (max-width: $bp-medium) {
+      // when there isn't room for the images and content side by side fill
+      // the whole screen and put the text ontop of the pictures
+      grid-column: 1/-1;
+      padding: 6rem;
+    }
+  }
+  &__img--1 {
+    width: 100%;
+    // put the image in column & rows 2-6
+    grid-row: 2/6;
+    grid-column: 2/6;
+    box-shadow: 0 2rem 5rem rgba(black, 0.1);
+    @media only screen and (max-width: $bp-medium) {
+      grid-column: 1/5;
+      grid-row: 1/-1;
+    }
+  }
+  &__img--2 {
+    //inflate the width to spill onto next div
+    width: 115%;
+    grid-row: 4/6;
+    grid-column: 4/7;
+    // need to change the zindex to show the overflow
+    z-index: 20;
+    box-shadow: 0 2rem 5rem rgba(black, 0.2);
+    @media only screen and (max-width: $bp-medium) {
+      grid-row: 1/-1;
+      width: 100%;
+    }
+  }
+
+  &__content {
+    background-color: $color-grey-light-1;
+    grid-column: col-start 5 / full-end;
+    padding: 6rem 8vw;
+    // want to center the contents in the cell. As its only a 1 directional component
+    //use flexbox
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // the button now stretches across the cell. Change default stretch to flex-start
+    align-items: flex-start;
+    @media only screen and (max-width: $bp-medium) {
+      // when there isn't room for the images and content side by side fill
+      // the whole screen and put the text ontop of the pictures
+      grid-column: 1/-1;
+      //put the content before the pictures
+      grid-row: 5/6;
+    }
+
+    // to do the same thing in grid......
+    //display:grid;
+    //align-content:center;
+    //justify-items:start;
+  }
+  &__text {
+    font-size: 1.5rem;
+    font-style: italic;
+    margin-bottom: 4rem;
+  }
+}

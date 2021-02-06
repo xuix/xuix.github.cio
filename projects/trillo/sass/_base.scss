@@ -1,0 +1,59 @@
+:root {
+  //define  css variables in the root selector. These will be accessible from all the other scopes
+  --color-primary: #eb2f64;
+  --color-primary-light: #ff3366;
+  --color-primary-dark: #ba265d;
+  --color-grey-light-1: #faf9f9;
+  --color-grey-light-2: #f4f2f2;
+  --color-grey-light-3: #f0eeee;
+  --color-grey-light-4: #ccc;
+  --color-grey-dark-1: #333;
+  --color-grey-dark-2: #777;
+  --color-grey-dark-3: #999;
+
+  //for box shadow
+  --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, 0.3);
+  --shadow-light: 0 2rem 5rem rgba(0, 0, 0, 0.06);
+  // for border bottom
+  --line: 1px solid var(--color-grey-light-2);
+}
+//define Sass variables for breakpoint. Can't us Css variables
+$bp-largest: 75em; // 1200px/16 =75
+$bp-large: 68.75em; // 1100px/16 =68.75
+$bp-medium: 56.25em; // 900px/16
+$bp-small: 37.5em; // 600px/16
+$bp-smallest: 31.25em; // 500px/16
+
+// Define standard selectors>>>>>>>>>>>>>>>>>>>>>
+* {
+  margin: 0;
+  padding: 0;
+}
+*,
+::before,
+::after {
+  box-sizing: inherit;
+}
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  @media only screen and (max-width: $bp-large) {
+    font-size: 50%; //    62.5% = 10px.  change to 8px.   8/16 =50%
+  }
+}
+// <<<<<<<<<<<<<<<<<<<<<<<Define standard selectors
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-grey-dark-2);
+  background-image: linear-gradient(
+    to right bottom,
+    var(--color-primary-light),
+    var(--color-primary-dark)
+  );
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
